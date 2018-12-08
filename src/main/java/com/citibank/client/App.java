@@ -28,7 +28,16 @@ public class App
     e.setSalary("80000");
     e.setEmail("mikethos@gmail.com");
 EmployeeService es=con.getBean("employeeService", EmployeeServiceImpl.class);
-es.createEmployee(e);
+//es.createEmployee(e);
+Employee emp = es.getEmployeeById(1);
+System.out.println(emp.getFirstName());
+System.out.println(emp.getLastName());
+System.out.println(emp.getEmail());
+System.out.println(emp.getGender());
+System.out.println(emp.getSalary());
+System.out.println(emp.getDoj());
+System.out.println();
+
 System.out.println("Created successfully");
     
     
