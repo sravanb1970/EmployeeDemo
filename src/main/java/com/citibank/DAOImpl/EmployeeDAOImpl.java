@@ -1,5 +1,6 @@
 package com.citibank.DAOImpl;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -13,7 +14,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 private DataSource dataSource;
 private JdbcTemplate jdbcTemplate;
 
-private static final String INSERT="INSERT INTO EMPLOYEE(FIRST_NAME,LAST_NAME,DOJ,EMAIL,GENDER,SALARY)VALUES(?,?,?,?,?)";
+private static final String INSERT="INSERT INTO EMPLOYEE(FIRST_NAME,LAST_NAME,DOJ,EMAIL,GENDER,SALARY)VALUES(?,?,?,?,?,?)";
 	public void setDataSource(DataSource dataSource) {
 	this.dataSource = dataSource;
 this.jdbcTemplate	=new JdbcTemplate(dataSource);
@@ -21,9 +22,14 @@ this.jdbcTemplate	=new JdbcTemplate(dataSource);
 	public void createEmployee(Employee e) {
 		System.out.println("started from DAO");
 		
+//		jdbcTemplate.update(INSERT, new Object[] {"sonam","kushal",new java.sql.Date(new java.util.Date().getTime()),"sam@gmail.com","female",80000})	;
 		jdbcTemplate.update(INSERT, new Object[] {e.getFirstName(),e.getLastName(),e.getDoj(),e.getEmail(),e.getGender(),e.getSalary()})	;	
 	System.out.println("Inserted from DAO");
 	
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 
 	public void updateEmployeeById(int eId) {

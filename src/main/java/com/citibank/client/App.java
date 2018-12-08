@@ -27,8 +27,7 @@ public class App
     e.setGender("Male");
     e.setSalary("80000");
     e.setEmail("mikethos@gmail.com");
-EmployeeService es=new EmployeeServiceImpl();
-
+EmployeeService es=con.getBean("employeeService", EmployeeServiceImpl.class);
 es.createEmployee(e);
 System.out.println("Created successfully");
     
