@@ -1,6 +1,7 @@
 package com.citibank.client;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -18,12 +19,21 @@ public class App {
 		AbstractApplicationContext con = new FileSystemXmlApplicationContext(
 				"src/main/java/com/citibank/cfgs/applicationContext.xml");
 
-		createEmployee();
+//		createEmployee();
 		EmployeeService es = con.getBean("employeeService", EmployeeServiceImpl.class);
-		employeeExtracted(es);
+	//	employeeExtracted(es);
+allEmployees(es);
 
-		System.out.println("Created successfully");
+	}
 
+	/**
+	 * @param es
+	 */
+	private static void allEmployees(EmployeeService es) {
+		List<Employee> e=es.getAllEmployees();
+		for (Employee employee : e) {
+			System.out.println(employee.getFirstName() +" \t"+ employee.getLastName());
+		}
 	}
 
 	/**
@@ -52,5 +62,7 @@ public class App {
 		e.setGender("Male");
 		e.setSalary("80000");
 		e.setEmail("mikethos@gmail.com");
+		System.out.println("Created successfully");
+
 	}
 }
